@@ -32,7 +32,8 @@ export const styleBox = {
  top: '20%',
  left: '50%',
  transform: 'translate(-50%, -50%)',
- width: 400,
+ width: '90vw',
+ maxWidth: 400,
  bgcolor: 'background.paper',
  border: '2px solid #000',
  boxShadow: 24,
@@ -142,7 +143,7 @@ function App() {
       sx={{
        minHeight: 400,
        maxWidth: 800,
-       width: '100vw',
+       width: '90vw',
        fontSize: 'x-large',
       }}
       component={Paper}
