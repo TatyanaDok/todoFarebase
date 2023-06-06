@@ -154,11 +154,17 @@ function App() {
        <Table aria-label="simple table">
         <TableHead>
          <TableRow>
-          <TableCell sx={{ textAlign: 'center' }}>{'ID'}</TableCell>
-          <TableCell sx={{ textAlign: 'center' }}>{'ТЕКСТ ЗАДАЧИ'}</TableCell>
-          <TableCell sx={{ textAlign: 'center' }}>{'ДАТА СОЗДАНИЯ'}</TableCell>
-          <TableCell sx={{ textAlign: 'center' }}>
-           {'ДЕЙСТВИЯ С ЗАДАЧЕЙ'}
+          <TableCell sx={{ textAlign: 'center', padding: '0' }}>
+           {'ID'}
+          </TableCell>
+          <TableCell sx={{ textAlign: 'center', padding: '0' }}>
+           {'текст'}
+          </TableCell>
+          <TableCell sx={{ textAlign: 'center', padding: '5px' }}>
+           {'дата создания'}
+          </TableCell>
+          <TableCell sx={{ textAlign: 'center', padding: '5px' }}>
+           {'дейстаия с задачей'}
           </TableCell>
          </TableRow>
         </TableHead>
