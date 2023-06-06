@@ -155,10 +155,10 @@ function App() {
         <TableHead>
          <TableRow>
           <TableCell sx={{ textAlign: 'center' }}>{'ID'}</TableCell>
-          <TableCell sx={{ textAlign: 'center' }}>{'текст задачи'}</TableCell>
-          <TableCell sx={{ textAlign: 'center' }}>{'дата создания'}</TableCell>
+          <TableCell sx={{ textAlign: 'center' }}>{'ТЕКСТ ЗАДАЧИ'}</TableCell>
+          <TableCell sx={{ textAlign: 'center' }}>{'ДАТА СОЗДАНИЯ'}</TableCell>
           <TableCell sx={{ textAlign: 'center' }}>
-           {'действия с задачей'}
+           {'ДЕЙСТВИЯ С ЗАДАЧЕЙ'}
           </TableCell>
          </TableRow>
         </TableHead>
@@ -173,7 +173,7 @@ function App() {
         ))}
        </Table>
       ) : (
-       'Задачь нет'
+       'ЗАДАЧ НЕТ'
       )}
      </TableContainer>
      <ToastContainer />
