@@ -1,49 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import CloseIcon from '@mui/icons-material/Close';
-import { styleBox } from './App';
-const styleButton = {
- marginTop: 1,
- bgcolor: 'black',
-};
-function AddTaskModal({ isOpen, onClose, onAddTask, submitText }) {
- const [isInput, setIsInput] = useState('');
- function handleNewTask(e) {
-  setIsInput(e.target.value);
- }
- function handleAddSubmit(e) {
-  e.preventDefault();
-  onAddTask(isInput);
- }
+import React, { useState, useEffect } from 'react'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import CloseIcon from '@mui/icons-material/Close'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import { styles } from '../styles'
 
- useEffect(() => {
-  setIsInput('');
- }, [isOpen]);
- return (
-  <Modal open={isOpen}>
-   <Box sx={styleBox} component="form" onSubmit={handleAddSubmit}>
-    <CloseIcon sx={{ alignSelf: 'end' }} onClick={onClose} />
-    <TextField
-     variant="standard"
-     required
-     id="add-modal"
-     onChange={handleNewTask}
-     value={isInput}
-     placeholder="Введите текст"
-    />
-    <Button
-     sx={styleButton}
-     variant="contained"
-     type="submit"
-     disabled={!isInput.length}
+function AddTaskModal({ isOpen, onClose, onAddTask, submitText, isLoading }) {
+  const [isInput, setIsInput] = useState('')
+  const isInputEmpty = isInput.trim() === ''
+  useEffect(() => {
+    setIsInput('')
+  }, [isOpen])
+
+  function handleNewTask(e) {
+    setIsInput(e.target.value)
+  }
+  function handleAddSubmit(e) {
+    e.preventDefault()
+    onAddTask(isInput)
+  }
+
+  return (
+    <Dialog
+      open={isOpen}
+      component="form"
+      onSubmit={handleAddSubmit}
+      sx={styles.root}
     >
-     {submitText}
-    </Button>
-   </Box>
-  </Modal>
- );
+      <DialogContent>
+        <CloseIcon
+          sx={{ alignSelf: 'end', cursor: 'pointer' }}
+          onClick={onClose}
+        />
+        <TextField
+          variant="standard"
+          required
+          id="add-modal"
+          onChange={handleNewTask}
+          value={isInput}
+          placeholder="Введите текст"
+        />
+        <DialogActions>
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={!isInput.length || isLoading || isInputEmpty}
+          >
+            {submitText}
+          </Button>
+        </DialogActions>
+      </DialogContent>
+    </Dialog>
+  )
 }
-export default AddTaskModal;
+export default AddTaskModal

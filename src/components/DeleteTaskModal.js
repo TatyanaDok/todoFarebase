@@ -1,28 +1,45 @@
-import React, { useContext } from 'react';
-import TaskContext from '../contexts/taskContext';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { useContext } from 'react'
+import TaskContext from '../contexts/taskContext'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import CloseIcon from '@mui/icons-material/Close'
+import { styles } from '../styles'
 
-import { styleBox } from './App';
 function DeleteModal({ isOpen, onClose, submitText, task }) {
- const { handleDeleteTask } = useContext(TaskContext);
+  const { handleDeleteTask } = useContext(TaskContext)
 
- function handleDeleteSubmit(e) {
-  e.preventDefault();
-  handleDeleteTask(task.id);
- }
+  function handleDeleteSubmit(e) {
+    e.preventDefault()
+    handleDeleteTask(task.id)
+  }
 
- return (
-  <Modal open={isOpen}>
-   <Box sx={styleBox} component="form" onSubmit={handleDeleteSubmit}>
-    <CloseIcon sx={{ alignSelf: 'end' }} onClick={onClose} />
-    <Button variant="contained" type="submit">
-     {submitText}
-    </Button>
-   </Box>
-  </Modal>
- );
+  return (
+    <Dialog
+      sx={styles.root}
+      open={isOpen}
+      component="form"
+      onSubmit={handleDeleteSubmit}
+    >
+      <DialogContent>
+        <CloseIcon
+          sx={{
+            padding: '2px',
+            position: 'absolute',
+            top: '-2px',
+            right: '0',
+            cursor: 'pointer',
+          }}
+          onClick={onClose}
+        />
+        <DialogActions>
+          <Button variant="contained" type="submit">
+            {submitText}
+          </Button>
+        </DialogActions>
+      </DialogContent>
+    </Dialog>
+  )
 }
-export default DeleteModal;
+export default DeleteModal
